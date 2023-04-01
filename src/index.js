@@ -1,6 +1,7 @@
-const express = require('express');
+const app = require('./server');
+const config = require('./config/config');
 
-const app = express();
-
-// SERVIDOR WEB
-app.listen(3000, () => console.log("Servidor iniciado..."));
+// SERVER WEB
+app.listen(config.app.PORT, () => {
+    console.log(`Server is running on port ${config.app.PORT}`);
+});
