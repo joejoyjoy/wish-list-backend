@@ -1,24 +1,19 @@
-const dotenv = require('dotenv');
+const dotenv = require('dotenv')
 
-if (process.env.NODE_ENV === 'development') {
-    dotenv.config({path: '.env.development'})
-} else {
-    dotenv.config({path: '.env.production'})
-}
+dotenv.config()
 
 const ENV = process.env.NODE_ENV || 'development'
 
 const CONFIG = {
-    development: {
-        app: {
-            PORT: process.env.PORT || 4001
-        },
+  development: {
+    app: {
+      PORT: process.env.PORT || 4000
     },
-    production: {
-        app: {
-            PORT: process.env.PORT || 4002
-        },
+    db: {
+      uri: process.env.MONGODB_URI
     }
+  },
+  production: {}
 }
 
 module.exports = CONFIG[ENV]
