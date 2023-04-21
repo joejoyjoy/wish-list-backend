@@ -5,6 +5,9 @@ const TodoSchema = new Schema({
     type: String,
     required: [true, "The title is required"]
   },
+  taskDate: {
+    type: String,
+  },
   taskDesc: {
     type: String,
     required: [true, "The description is required"]

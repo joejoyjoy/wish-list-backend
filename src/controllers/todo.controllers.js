@@ -2,12 +2,12 @@ const TodoModel = require('../models/todo.model')
 const UserModel = require('../models/user.model')
 
 const saveTodo = async (req, res) => {
-  const { taskTitle, taskDesc } = req.body
+  const { taskTitle, taskDate, taskDesc } = req.body
   const { userID } = req.params
   console.log(userID);
 
   try {
-    const createdTodo = await TodoModel.create({ taskTitle, taskDesc })
+    const createdTodo = await TodoModel.create({ taskTitle, taskDate, taskDesc })
     const user = await UserModel.findById(userID)
 
     user.todos.push(createdTodo._id)
