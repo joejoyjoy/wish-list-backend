@@ -59,9 +59,33 @@ const deleteTodo = async (req, res) => {
   }
 }
 
+const changeTodoValue = async (req, res) => {
+  const { taskTitle, taskDesc } = req.body
+  const { taskID } = req.params
+
+  try {
+    const updateTodo = await TodoModel.findByIdAndUpdate(
+      { _id: taskID },
+      {
+        $set:
+        {
+          taskTitle: taskTitle,
+          taskDesc: taskDesc,
+        }
+      },
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json(updateTodo);
+  } catch (error) {
+    res.status(500).send({ msg: error.message })
+  }
+}
+
 module.exports = {
   saveTodo,
   getTodosOfUser,
   changeTodoState,
-  deleteTodo
+  deleteTodo,
+  changeTodoValue
 }
