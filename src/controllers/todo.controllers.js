@@ -38,10 +38,22 @@ const changeTodoState = async (req, res) => {
 
   try {
     const updateTodo = await TodoModel.findByIdAndUpdate(
-      { _id: taskID }, { $set: { taskState: taskState }}, {new: true, runValidators: true}
+      { _id: taskID }, { $set: { taskState: taskState } }, { new: true, runValidators: true }
     );
-    
+
     res.status(200).json(updateTodo);
+  } catch (error) {
+    res.status(500).send({ msg: error.message })
+  }
+}
+
+const deleteTodo = async (req, res) => {
+  const { taskID } = req.params
+
+  try {
+    const deleteTodo = await TodoModel.findByIdAndDelete({ _id: taskID });
+
+    res.status(200).json(deleteTodo);
   } catch (error) {
     res.status(500).send({ msg: error.message })
   }
@@ -50,5 +62,6 @@ const changeTodoState = async (req, res) => {
 module.exports = {
   saveTodo,
   getTodosOfUser,
-  changeTodoState
+  changeTodoState,
+  deleteTodo
 }
