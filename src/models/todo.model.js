@@ -11,6 +11,9 @@ const TodoSchema = new Schema({
   taskDesc: {
     type: String,
     required: [true, "The description is required"]
+  },
+  taskState: {
+    type: Boolean
   }
 })
 
