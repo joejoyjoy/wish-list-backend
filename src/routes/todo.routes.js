@@ -1,5 +1,11 @@
 const todoRouter = require('express').Router()
-const { saveTodo, getTodosOfUser, changeTodoState, deleteTodo, changeTodoValue } = require('../controllers/todo.controllers')
+const { 
+  saveTodo, 
+  getTodosOfUser, 
+  changeTodoState, 
+  deleteTodo, 
+  changeTodoValue 
+} = require('../controllers/todo.controllers')
 
 todoRouter
   .post('/create/:userID', saveTodo)
