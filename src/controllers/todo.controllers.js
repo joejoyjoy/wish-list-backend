@@ -16,7 +16,7 @@ const saveTodo = async (req, res) => {
     res.status(201).send({ data: createdTodo })
 
   } catch (error) {
-    res.status(500).send({ msg: error.message })
+    res.status(400).send({ msg: error.message })
   }
 }
 
@@ -28,7 +28,7 @@ const getTodosOfUser = async (req, res) => {
 
     res.status(200).send({ data: user.todos })
   } catch (error) {
-    res.status(500).send({ msg: error.message })
+    res.status(404).send({ msg: error.message })
   }
 }
 
@@ -43,7 +43,7 @@ const changeTodoState = async (req, res) => {
 
     res.status(200).json(updateTodo);
   } catch (error) {
-    res.status(500).send({ msg: error.message })
+    res.status(404).send({ msg: error.message })
   }
 }
 
@@ -53,9 +53,9 @@ const deleteTodo = async (req, res) => {
   try {
     const deleteTodo = await TodoModel.findByIdAndDelete({ _id: taskID });
 
-    res.status(200).json(deleteTodo);
+    res.status(204).json(deleteTodo);
   } catch (error) {
-    res.status(500).send({ msg: error.message })
+    res.status(404).send({ msg: error.message })
   }
 }
 
