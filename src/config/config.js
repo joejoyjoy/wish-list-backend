@@ -13,7 +13,14 @@ const CONFIG = {
       uri: process.env.MONGODB_URI
     }
   },
-  production: {}
+  production: {
+    app: {
+      PORT: process.env.PORT || 4000
+    },
+    db: {
+      uri: process.env.MONGODB_URI
+    }
+  }
 }
 
 module.exports = CONFIG[ENV]
